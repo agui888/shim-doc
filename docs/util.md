@@ -18,13 +18,11 @@ isEqual
 
 _.isEqual(a, b)
 
-compare a and b is
+compare a and b if they are
 
 - same table
 - value equal
-- deep equal
-
-it won't compare metatable
+- table and deep equal
 
 ```lua
 _.isEqual(1, 1)
@@ -37,11 +35,15 @@ _.isEqual({}, {})
 -- → true
 ```
 
+it won't compare metatable
+
 
 trim
 ---
 
 _.trim(string, [where])
+
+remove whitespace at ends of a string, default is both ends
 
 ```lua
 _.trim('  abc   ')
@@ -63,6 +65,8 @@ extend
 
 _.extend(dst, ...)
 
+extend the properties of ... to the destination object, and return the destination object, ... object properties will overwrite dst object properties
+
 ```lua
 _.extend({a = 1}, {b = 2})
 -- → {a = 1, b = 2}
@@ -79,6 +83,8 @@ split
 
 _.split(str, sep)
 
+split a string into array by separating it with the separator
+
 ```lua
 _.split('q,w,e,r', ',')
 -- → {'q', 'w', 'e', 'r'}
@@ -89,6 +95,8 @@ _.split('qwer as', ''
 
 empty
 ---
+
+check if the value is empty, read the demo below before you use the api
 
 _.empty(value)
 
@@ -110,6 +118,8 @@ only
 ---
 
 _.only(table, keys)
+
+Return whitelisted properties of a table
 
 ```lua
 _.only({
@@ -171,6 +181,8 @@ dump
 
 _.dump(value)
 
+pretty print a table or other types
+
 ```lua
 print(_.dump({
     a = 1,
@@ -190,7 +202,7 @@ print(_.dump({
 }
 ```
 
-print function thread or others cannot `tostring` with `[type]`
+other types like function thread cannot `tostring` will just print as `[type]`
 
 ```lua
 print(_.dump({
