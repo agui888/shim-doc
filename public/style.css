@@ -54,7 +54,7 @@ p {
 }
 
 code {
-  font-family: consolas monospace;
+  font-family: Consolas, monospace;
   font-size: .9em;
 }
 
@@ -73,11 +73,13 @@ h1:not(:first-child) {
 
 #menu .h2 {
   margin-left: 10px;
+  color: #666;
   font-size: .9em;
 }
 
 #menu .h3 {
   margin-left: 20px;
+  color: #999;
   font-size: .8em;
 }
 

@@ -2,4 +2,5 @@ title: shim
 description: A utility library for Lua
 section:
 - introduction
-- api
+- util
+- array

@@ -1,18 +1,4 @@
-isArray
----
-
-_.isArray(value)
-
-Check if value is array
-
-```lua
-_.isArray({1, 2, 3})
--- → true
-
-_.isArray({1, 2, 3, w = 4})
--- → false
-```
-
+most array functions can be used on string too
 
 each
 ---
@@ -48,12 +34,6 @@ map
 _.map(array, func)
 
 
-isEqual
----
-
-_.isEqual(a, b)
-
-
 has
 ---
 
@@ -64,12 +44,6 @@ sub
 ---
 
 _.sub(string, start, end)
-
-
-trim
----
-
-_.trim(string, where)
 
 
 flatten
@@ -96,12 +70,6 @@ union
 _.union(...)
 
 
-extend
----
-
-_.extend(dst, ...)
-
-
 sort
 ---
 
@@ -117,7 +85,7 @@ _.filter(array, func)
 indexOf
 ---
 
-_.indexOf(array, value, [from = 1], [isPlain = false])
+_.indexOf(array|string, value, [from = 1], [isPlain = false])
 
 `isPlain = true` turns of the pattern matching facilities
 
@@ -125,4 +93,4 @@ _.indexOf(array, value, [from = 1], [isPlain = false])
 lastIndexOf
 ---
 
-_.lastIndexOf(array, value, [from = #array], [isPlain = false])
+_.lastIndexOf(array|string, value, [from = #array], [isPlain = false])
