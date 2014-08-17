@@ -2,7 +2,18 @@
 ul
   each x in section
     li: a(href='#')= x
---></div><div id="heading"><div id="logo">shim</div><div id="tagline">A utility library for Lua</div></div></section><section><div class="content"><h1 id="introduction">introduction</h1><p><p><code>shim.lua</code> is a utility library for lua, which deeply inspired by <a href="https://github.com/jashkenas/underscore">Underscore.js</a>, <a href="https://github.com/lodash/lodash">Lodash.js</a>, <a href="https://github.com/Yonaba/Moses">Moses</a></p>
+--></div><div id="heading"><div id="logo">shim</div><div id="tagline">A utility library for Lua</div></div></section><section><div class="content"><h1 id="introduction">introduction</h1><p><p><code>shim.lua</code> is a utility library for lua, which deeply inspired by <a href="https://github.com/jashkenas/underscore">Underscore.js</a>, <a href="https://github.com/lodash/lodash">Lodash.js</a>, <a href="https://github.com/Yonaba/Moses">Moses</a>, but more suitable for lua</p>
+<ul>
+<li><p>easy to handle arraylike table easily with <a href="/#array">array api</a></p>
+</li>
+<li><p><a href="/#chain">chaining</a> support like underscore</p>
+</li>
+<li><p>pretty print with <a href="/#dump">_.dump</a></p>
+</li>
+<li><p>advanced assertion like <a href="/#ok">_.ok</a></p>
+</li>
+</ul>
+<p>see at <a href="https://github.com/chunpu/Shim">Github repository</a></p>
 <h2 id="install">Install</h2>
 <pre><code class="lang-bash">$ wget --no-check-certificate https://raw.githubusercontent.com/chunpu/Shim/master/shim.lua
 </code></pre>
@@ -171,44 +182,167 @@ _.assertEqual(2, 2)
 <h2 id="each">each</h2>
 <p>_.each(array, func)</p>
 <p>Iterates the array table, executing the callback for each element</p>
+<p>callback will execute with three arguments: (value, index, array)</p>
+<pre><code class="lang-lua">_.each({11, 22, 33}, print)
+-- →
+11      1       table: 0x1fa7600
+22      2       table: 0x1fa7600
+33      3       table: 0x1fa7600
+</code></pre>
+<p><code>_.each</code> can only iterate array table or string, it return the first argument and don&#39;t do anything if not the right type</p>
+<p>so you don&#39;t have to check the type before use the api like</p>
+<pre><code class="lang-lua">-- not necessary, _.each will check it for you
+if type(array) == &#39;table&#39; then
+    _.each(array, print)
+end
+</code></pre>
+<p><code>_.each</code> is the base function for other api like <code>_.map</code>, <code>_.filter</code>, you can also use them directly without type checking</p>
 <h2 id="_each">_each</h2>
 <p>_._each(array, func)</p>
 <p>like <code>_.each</code> above, but break loop when <code>func</code> return <code>false</code></p>
+<pre><code class="lang-lua">local arr = {}
+_._each({1, 2, 3, 4}, function(x)
+    if x &gt; 2 then return false end -- break loop
+    table.insert(arr, x)
+end)
+arr -- → {1, 2}
+</code></pre>
 <h2 id="every">every</h2>
 <p>_.every(array, func)</p>
+<p>check if all the callback return values are truthy</p>
+<pre><code class="lang-lua">_.every({1, 2, 3}, function(x)
+    return x &gt; 0
+end)
+true
+
+_.every({1, 2, 3}, function(x)
+    return x &gt; 2
+end)
+false
+</code></pre>
 <h2 id="some">some</h2>
 <p>_.some(array, func)</p>
+<pre><code class="lang-lua">_.some({1, 2, 3}, function(x)
+    return x &gt; 2
+end)
+-- → true
+
+_.some({1, 2, 3}, function(x)
+    return x &gt; 4
+end)
+-- → false
+</code></pre>
 <h2 id="map">map</h2>
 <p>_.map(array, func)</p>
+<p>returns a new array of the results of each callback execution</p>
+<pre><code class="lang-lua">local arr = {1, 0, 2, 4}
+_.map(arr, function(x)
+    return x + 1
+end)
+-- → {2, 1, 3, 5}
+</code></pre>
 <h2 id="has">has</h2>
 <p>_.has(array|string, item)</p>
+<p>return true if item is in the string|array</p>
+<pre><code class="lang-lua">_.has(&#39;qwert&#39;, &#39;rt&#39;)
+-- → true
+
+_.has({1, 2, 3, 4}, 3)
+-- → true
+</code></pre>
 <h2 id="sub">sub</h2>
 <p>_.sub(string, start, end)</p>
+<p>return substring of a string by start and end index</p>
+<pre><code class="lang-lua">_.sub(&#39;qwer&#39;, 2, 3)
+-- → &#39;we&#39;
+</code></pre>
 <h2 id="flatten">flatten</h2>
 <p>_.flatten(array)</p>
+<p>flattens a nested array</p>
+<pre><code class="lang-lua">_.flatten({1, {2, {3, {4}}}})
+-- → {1, 2, 3, 4}
+</code></pre>
 <h2 id="push">push</h2>
 <p>_.push(array, ...)</p>
+<p>push ... to the end of the array</p>
+<pre><code class="lang-lua">_.push({1, 2, 3}, 4, 5)
+-- → {1, 2, 3, 4, 5}
+</code></pre>
 <h2 id="uniq">uniq</h2>
 <p>_.uniq(array)</p>
+<p>remove duplicated value in the array</p>
+<p>it use table k, v so it won&#39;t keep the order</p>
+<pre><code class="lang-lua">_.uniq({1, 2, 3, 2, 1})
+-- → {1, 2, 3}
+</code></pre>
 <h2 id="union">union</h2>
 <p>_.union(...)</p>
+<p>creates an array of unique values, if nested then flatten first</p>
+<pre><code class="lang-lua">_.sort(_.union({1, 2, 3}, {5, 2, 1, 4}, {2, 1}))
+-- → {1, 2, 3, 4, 5}
+</code></pre>
 <h2 id="sort">sort</h2>
-<p>_.sort(array, func)</p>
+<p>_.sort(array, [func])</p>
+<p>alias for table.sort(table, [func])</p>
+<pre><code class="lang-lua">_.sort({3, 2, 4, 1})
+-- → {1, 2, 3, 4}
+</code></pre>
 <h2 id="filter">filter</h2>
 <p>_.filter(array, func)</p>
+<p>returns a new array of elements that passed the callback check</p>
+<pre><code class="lang-lua">_.filter({1, 2, 3, 4, 5}, function(x)
+    return x → 3
+end
+-- → {4, 5}
+</code></pre>
 <h2 id="indexof">indexOf</h2>
 <p>_.indexOf(array|string, value, [from = 1], [isPlain = false])</p>
-<p><code>isPlain = true</code> turns of the pattern matching facilities</p>
+<p>get the index of the matched value or nil</p>
+<p><code>isPlain = true</code> turns off the pattern matching facilities</p>
+<pre><code class="lang-lua">_.indexOf({11, 22, 33}, 22)
+-- → 2
+
+_.indexOf({11, 22, 33}, 44)
+-- → nil
+
+_.indexOf({11, 22, 33, 33, 22, 11}, 22, 3)
+-- → 5
+</code></pre>
 <h2 id="lastindexof">lastIndexOf</h2>
 <p>_.lastIndexOf(array|string, value, [from = #array], [isPlain = false])</p>
+<p>match from end of the array, get the index of the matched value or nil</p>
+<pre><code class="lang-lua">_.lastIndexOf({11, 22, 33, 11}, 11)
+-- → 4
+_.lastIndexOf({11, 22, 33, 11}, 0)
+-- → nil
+_.lastIndexOf({11, 22, 33}, 11)
+-- → 1
+</code></pre>
 <h2 id="difference">difference</h2>
 <p>_.difference(array, other)</p>
+<p>creates an array excluding all values of the second array</p>
+<pre><code class="lang-lua">_.difference({1, 2, 3, 4, 5}, {5, 2, 10})
+-- → {1, 3, 4}
+</code></pre>
 <h2 id="without">without</h2>
 <p>without</p>
 <p>_.without(array, ...)</p>
+<p>creates an array excluding all provided arguments</p>
+<pre><code class="lang-lua">_.without({1, 4, 3, nil, 0, &#39;&#39;}, nil, 0, &#39;&#39;)
+-- → {1, 4, 3}
+</code></pre>
 <h2 id="reduce">reduce</h2>
 <p>_.reduce(array, fn, [prev])</p>
+<p>reduces a collection to a value which is the accumulated result of running each element in the collection through the callback</p>
+<pre><code class="lang-lua">_.reduce({1, 2, 3, 4}, function(ret, k)
+    return ret + k
+end, 0)
+-- → 10
+</code></pre>
 <h2 id="invoke">invoke</h2>
 <p>_.invoke(arr, fn)</p>
 <p>just like map now</p>
+<pre><code class="lang-lua">_.invoke({&#39;1&#39;, &#39;2&#39;, &#39;3&#39;}, tonumber)
+-- → {1, 2, 3}
+</code></pre>
 </p></div></section><script src="http://code.jquery.com/jquery-2.1.1.min.js"></script><script src="public/app.js"></script></body></html>
