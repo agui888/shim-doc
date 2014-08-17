@@ -94,3 +94,34 @@ lastIndexOf
 ---
 
 _.lastIndexOf(array|string, value, [from = #array], [isPlain = false])
+
+
+difference
+---
+
+_.difference(array, other)
+
+
+without
+---
+
+without
+
+_.without(array, ...)
+
+
+reduce
+---
+
+_.reduce(array, fn, [prev])
+
+
+invoke
+---
+
+_.invoke(arr, fn)
+
+just like map now
+
+
+

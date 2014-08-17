@@ -30,3 +30,38 @@ extend
 
 _.extend(dst, ...)
 
+
+split
+---
+
+_.split(str, sep)
+
+
+empty
+---
+
+_.empty(value)
+
+
+only
+---
+
+_.only(table, keys)
+
+
+assertEqual
+---
+
+_.assertEqual(actula, expect, [level = 2])
+
+
+ok
+---
+
+_.ok(...)
+
+
+dump
+---
+
+_.dump(value)
