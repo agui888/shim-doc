@@ -12,7 +12,49 @@ ul
 </p></div></section><section><div class="content"><h1 id="api">api</h1><p><h2 id="isarray">isArray</h2>
 <p>_.isArray(value)</p>
 <p>Check if value is array</p>
+<pre><code class="lang-lua">_.isArray({1, 2, 3})
+-- → true
+
+_.isArray({1, 2, 3, w = 4})
+-- → false
+</code></pre>
 <h2 id="each">each</h2>
-<p>_.each(array)</p>
+<p>_.each(array, func)</p>
 <p>Iterates the array table, executing the callback for each element</p>
+<h2 id="_each">_each</h2>
+<p>_._each(array, func)</p>
+<p>like <code>_.each</code> above, but break loop when <code>func</code> return <code>false</code></p>
+<h2 id="_-every">_.every</h2>
+<p>_.every(array, func)</p>
+<h2 id="some">some</h2>
+<p>_.some(array, func)</p>
+<h2 id="map">map</h2>
+<p>_.map(array, func)</p>
+<h2 id="isequal">isEqual</h2>
+<p>_.isEqual(a, b)</p>
+<h2 id="has">has</h2>
+<p>_.has(array|string, item)</p>
+<h2 id="sub">sub</h2>
+<p>_.sub(string, start, end)</p>
+<h2 id="trim">trim</h2>
+<p>_.trim(string, where)</p>
+<h2 id="flatten">flatten</h2>
+<p>_.flatten(array)</p>
+<h2 id="push">push</h2>
+<p>_.push(array, ...)</p>
+<h2 id="uniq">uniq</h2>
+<p>_.uniq(array)</p>
+<h2 id="union">union</h2>
+<p>_.union(...)</p>
+<h2 id="extend">extend</h2>
+<p>_.extend(dst, ...)</p>
+<h2 id="sort">sort</h2>
+<p>_.sort(array, func)</p>
+<h2 id="filter">filter</h2>
+<p>_.filter(array, func)</p>
+<h2 id="indexof">indexOf</h2>
+<p>_.indexOf(array, value, [from = 1], [isPlain = false])</p>
+<p><code>isPlain = true</code> turns of the pattern matching facilities</p>
+<h2 id="lastindexof">lastIndexOf</h2>
+<p>_.lastIndexOf(array, value, [from = #array], [isPlain = false])</p>
 </p></div></section><script src="http://code.jquery.com/jquery-2.1.1.min.js"></script><script src="public/app.js"></script></body></html>
