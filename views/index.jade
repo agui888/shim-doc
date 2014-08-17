@@ -1,0 +1,29 @@
+include ../mixin.jade
+
+doctype html
+html
+  head
+    title= title + ' - ' + description
+    link(rel='stylesheet', href='public/style.css')
+    meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0')
+  body
+    section#top
+      #menu
+        //
+            a#toggle(href='#'): i.icon-menu menu
+            ul
+              each x in section
+                li: a(href='##{x}')= x
+
+      #heading
+        #logo= title
+        #tagline= description
+
+    each x in section
+      section
+        .content
+            h1(id='#{x}')= x
+            p
+              +#{x}
+    script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='public/app.js')
