@@ -20,22 +20,147 @@ _.isArray({1, 2, 3, w = 4})
 </code></pre>
 <h2 id="isequal">isEqual</h2>
 <p>_.isEqual(a, b)</p>
+<p>compare a and b is</p>
+<ul>
+<li>same table</li>
+<li>value equal</li>
+<li>deep equal</li>
+</ul>
+<p>it won&#39;t compare metatable</p>
+<pre><code class="lang-lua">_.isEqual(1, 1)
+-- → true
+
+_.isEqual({a = 1}, {a = 1})
+-- → true
+
+_.isEqual({}, {})
+-- → true
+</code></pre>
 <h2 id="trim">trim</h2>
-<p>_.trim(string, where)</p>
+<p>_.trim(string, [where])</p>
+<pre><code class="lang-lua">_.trim(&#39;  abc   &#39;)
+-- → &#39;abc&#39;
+
+_.trim(&#39;    &#39;)
+-- → &#39;&#39;
+
+_.trim(&#39;  abc  &#39;, &#39;right&#39;)
+-- → &#39;  abc&#39;
+
+_.trim(&#39;  abc  &#39;, &#39;left&#39;)
+-- → &#39;abc  &#39;
+</code></pre>
 <h2 id="extend">extend</h2>
 <p>_.extend(dst, ...)</p>
+<pre><code class="lang-lua">_.extend({a = 1}, {b = 2})
+-- → {a = 1, b = 2}
+
+_.extend({a = 1, b = 2}, {b = 3})
+-- → {a = 1, b = 3}
+
+_.extend({a = 1}, {b = 2}, {c = 3}
+-- → {a = 1, b = 2, c = 3}
+</code></pre>
 <h2 id="split">split</h2>
 <p>_.split(str, sep)</p>
+<pre><code class="lang-lua">_.split(&#39;q,w,e,r&#39;, &#39;,&#39;)
+-- → {&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;}
+
+_.split(&#39;qwer as&#39;, &#39;&#39;
+-- → {&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;, &#39; &#39;, &#39;a&#39;, &#39;s&#39;}
+</code></pre>
 <h2 id="empty">empty</h2>
 <p>_.empty(value)</p>
+<pre><code class="lang-lua">_.empty(false)
+_.empty({})
+_.empty(0)
+_.empty(&#39;&#39;)
+-- → true
+
+_.empty(1)
+_.empty(&#39;0&#39;)
+_.empty(true)
+-- → false
+</code></pre>
 <h2 id="only">only</h2>
 <p>_.only(table, keys)</p>
+<pre><code class="lang-lua">_.only({
+    a = 1,
+    b = 2,
+    c = 3
+}, {&#39;a&#39;, &#39;b&#39;})
+-- &gt;
+{a = 1, b = 2}
+
+_.only({
+    a = 1,
+    b = 2,
+    c = 3,
+    d = 4
+}, &#39;a c d&#39;)
+-- &gt;
+{
+    a = 1,
+    c = 3,
+    d = 4
+}
+</code></pre>
 <h2 id="assertequal">assertEqual</h2>
-<p>_.assertEqual(actula, expect, [level = 2])</p>
+<p>_.assertEqual(actual, expect, [level = 2])</p>
+<p>same like <code>_.isEqual</code>, but will throw an assertion error when <code>_.isEqual</code> return false</p>
 <h2 id="ok">ok</h2>
 <p>_.ok(...)</p>
+<p>mostly used in multi test cases, also throw assertion error when fail to match</p>
+<pre><code class="lang-lua">_.ok(true)
+
+_.ok(false) -- &gt; throw error
+
+_.ok({
+    1, 1
+}, {
+    2, 2
+})
+-- sugar for
+_.assertEqual(1, 1)
+_.assertEqual(2, 2)
+</code></pre>
 <h2 id="dump">dump</h2>
-<p>_.dump(...)</p>
+<p>_.dump(value)</p>
+<pre><code class="lang-lua">print(_.dump({
+    a = 1,
+    b = {
+        a = 1,
+        b = {2, 3, 4}
+    }
+}))
+
+-- &gt;
+{
+    &#39;b&#39;: {
+        &#39;b&#39;: [2, 3, 4],
+        &#39;a&#39;: 1
+    },
+    &#39;a&#39;: 1
+}
+</code></pre>
+<p>print function thread or others cannot <code>tostring</code> with <code>[type]</code></p>
+<pre><code class="lang-lua">print(_.dump({
+    thread = coroutine.create(function() end),
+    object = coroutine
+}))
+-- &gt;
+{
+    &#39;thread&#39;: [thread],
+    &#39;object&#39;: {
+        &#39;create&#39;: [function],
+        &#39;running&#39;: [function],
+        &#39;status&#39;: [function],
+        &#39;wrap&#39;: [function],
+        &#39;yield&#39;: [function],
+        &#39;resume&#39;: [function]
+    }
+}
+</code></pre>
 </p></div></section><section><div class="content"><h1 id="array">array</h1><p><p>most array functions can be used on string too</p>
 <h2 id="each">each</h2>
 <p>_.each(array, func)</p>
