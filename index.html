@@ -196,7 +196,7 @@ if type(array) == &#39;table&#39; then
     _.each(array, print)
 end
 </code></pre>
-<p><code>_.each</code> is the base function for other api like <code>_.map</code>, <code>_.filter</code>, you can also use them directly without type checking</p>
+<p><code>_.each</code> is the base function for other api like <code>_.map</code>, <code>_.filter</code>, so you can also use them directly without type checking</p>
 <h2 id="_each">_each</h2>
 <p>_._each(array, func)</p>
 <p>like <code>_.each</code> above, but break loop when <code>func</code> return <code>false</code></p>
@@ -213,12 +213,12 @@ arr -- → {1, 2}
 <pre><code class="lang-lua">_.every({1, 2, 3}, function(x)
     return x &gt; 0
 end)
-true
+-- → true
 
 _.every({1, 2, 3}, function(x)
     return x &gt; 2
 end)
-false
+-- → false
 </code></pre>
 <h2 id="some">some</h2>
 <p>_.some(array, func)</p>
@@ -235,8 +235,7 @@ end)
 <h2 id="map">map</h2>
 <p>_.map(array, func)</p>
 <p>returns a new array of the results of each callback execution</p>
-<pre><code class="lang-lua">local arr = {1, 0, 2, 4}
-_.map(arr, function(x)
+<pre><code class="lang-lua">_.map({1, 0, 2, 4}, function(x)
     return x + 1
 end)
 -- → {2, 1, 3, 5}
@@ -291,7 +290,7 @@ _.has({1, 2, 3, 4}, 3)
 <p>_.filter(array, func)</p>
 <p>returns a new array of elements that passed the callback check</p>
 <pre><code class="lang-lua">_.filter({1, 2, 3, 4, 5}, function(x)
-    return x → 3
+    return x &gt; 3
 end
 -- → {4, 5}
 </code></pre>
@@ -344,5 +343,23 @@ end, 0)
 <p>just like map now</p>
 <pre><code class="lang-lua">_.invoke({&#39;1&#39;, &#39;2&#39;, &#39;3&#39;}, tonumber)
 -- → {1, 2, 3}
+</code></pre>
+</p></div></section><section><div class="content"><h1 id="chaining">chaining</h1><p><h2 id="_">_</h2>
+<p>_(value)</p>
+<p><code>_</code> is callable, <code>_(value)</code> will create a table wraps the given value</p>
+<pre><code class="lang-lua">_({1, 0, 2, 4}):sort()
+-- → {0, 1, 2, 4}
+</code></pre>
+<p>tips: <code>a:b(args)</code> is sugar for <code>a.b(self, args)</code>, <code>self</code> is a</p>
+<h2 id="chain">chain</h2>
+<p>_(value):chain()</p>
+<p>make the wrapped table chainable, remember to use <code>:value()</code> to get the value you need</p>
+<pre><code class="lang-lua">_({1, 0, 2, 4})
+    :chain()
+    :sort()
+    :map(function(x) return x * 2 end)
+    :filter(function(x) return x &lt; 6 end)
+    :value()
+-- → {0, 2, 4}
 </code></pre>
 </p></div></section><script src="http://code.jquery.com/jquery-2.1.1.min.js"></script><script src="public/app.js"></script></body></html>
