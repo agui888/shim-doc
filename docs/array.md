@@ -1,4 +1,4 @@
-most array functions can be used on string too
+Most array functions can be used on string too
 
 each
 ---
@@ -35,7 +35,7 @@ _each
 
 _._each(array, func)
 
-like `_.each` above, but break loop when `func` return `false`
+Like `_.each` above, but break loop when `func` return `false`
 
 ```lua
 local arr = {}
@@ -52,7 +52,7 @@ every
 
 _.every(array, func)
 
-check if all the callback return values are truthy
+Check if all the callback return values are truthy
 
 ```lua
 _.every({1, 2, 3}, function(x)
@@ -71,6 +71,8 @@ some
 
 _.some(array, func)
 
+Check if any callback return values are truthy
+
 ```lua
 _.some({1, 2, 3}, function(x)
     return x > 2
@@ -88,7 +90,7 @@ map
 
 _.map(array, func)
 
-returns a new array of the results of each callback execution
+Return a new array of the results of each callback execution
 
 ```lua
 _.map({1, 0, 2, 4}, function(x)
@@ -102,7 +104,7 @@ has
 
 _.has(array|string, item)
 
-return true if item is in the string|array
+Return true if item is in the string|array
 
 ```lua
 _.has('qwert', 'rt')
@@ -118,7 +120,7 @@ sub
 
 _.sub(string, start, end)
 
-return substring of a string by start and end index
+Return substring of a string by start and end index
 
 ```lua
 _.sub('qwer', 2, 3)
@@ -131,7 +133,7 @@ flatten
 
 _.flatten(array)
 
-flattens a nested array
+Flatten a nested array
 
 ```lua
 _.flatten({1, {2, {3, {4}}}})
@@ -144,7 +146,7 @@ push
 
 _.push(array, ...)
 
-push ... to the end of the array
+Push ... to the end of the array
 
 ```lua
 _.push({1, 2, 3}, 4, 5)
@@ -157,7 +159,7 @@ uniq
 
 _.uniq(array)
 
-remove duplicated value in the array
+Remove duplicated values in the array
 
 it use table k, v so it won't keep the order
 
@@ -172,7 +174,7 @@ union
 
 _.union(...)
 
-creates an array of unique values, if nested then flatten first
+Create an array of unique values, if nested then flatten first
 
 ```lua
 _.sort(_.union({1, 2, 3}, {5, 2, 1, 4}, {2, 1}))
@@ -185,7 +187,7 @@ sort
 
 _.sort(array, [func])
 
-alias for table.sort(table, [func])
+Alias for table.sort(table, [func])
 
 ```lua
 _.sort({3, 2, 4, 1})
@@ -198,7 +200,7 @@ filter
 
 _.filter(array, func)
 
-returns a new array of elements that passed the callback check
+Return a new array of elements that passed the callback check
 
 ```lua
 _.filter({1, 2, 3, 4, 5}, function(x)
@@ -213,7 +215,7 @@ indexOf
 
 _.indexOf(array|string, value, [from = 1], [isPlain = false])
 
-get the index of the matched value or nil
+Get the index of the matched value or nil
 
 `isPlain = true` turns off the pattern matching facilities
 
@@ -234,7 +236,7 @@ lastIndexOf
 
 _.lastIndexOf(array|string, value, [from = #array], [isPlain = false])
 
-match from end of the array, get the index of the matched value or nil
+Match from end of the array, get the index of the matched value or nil
 
 ```lua
 _.lastIndexOf({11, 22, 33, 11}, 11)
@@ -250,7 +252,7 @@ difference
 
 _.difference(array, other)
 
-creates an array excluding all values of the second array
+Create an array excluding all values of the second array
 
 ```lua
 _.difference({1, 2, 3, 4, 5}, {5, 2, 10})
@@ -261,11 +263,9 @@ _.difference({1, 2, 3, 4, 5}, {5, 2, 10})
 without
 ---
 
-without
-
 _.without(array, ...)
 
-creates an array excluding all provided arguments
+Create an array excluding all provided arguments
 
 ```lua
 _.without({1, 4, 3, nil, 0, ''}, nil, 0, '')
@@ -278,7 +278,7 @@ reduce
 
 _.reduce(array, fn, [prev])
 
-reduces a collection to a value which is the accumulated result of running each element in the collection through the callback
+Reduce a collection to a value which is the accumulated result of running each element in the collection through the callback
 
 ```lua
 _.reduce({1, 2, 3, 4}, function(ret, k)
@@ -292,7 +292,7 @@ invoke
 
 _.invoke(arr, fn)
 
-just like map now
+Just like map now
 
 ```lua
 _.invoke({'1', '2', '3'}, tonumber)

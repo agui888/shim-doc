@@ -18,7 +18,7 @@ isEqual
 
 _.isEqual(a, b)
 
-compare a and b if they are
+Compare a and b if they are
 
 - same table
 - value equal
@@ -43,7 +43,7 @@ trim
 
 _.trim(string, [where])
 
-remove whitespace at ends of a string, default is both ends
+Remove whitespace at ends of a string, default is both ends
 
 ```lua
 _.trim('  abc   ')
@@ -65,7 +65,7 @@ extend
 
 _.extend(dst, ...)
 
-extend the properties of ... to the destination object, and return the destination object, ... object properties will overwrite dst object properties
+Extend the properties of ... to the destination object, and return the destination object, ... object properties will overwrite dst object properties
 
 ```lua
 _.extend({a = 1}, {b = 2})
@@ -83,7 +83,7 @@ split
 
 _.split(str, sep)
 
-split a string into array by separating it with the separator
+Split a string into array by separating it with the separator
 
 ```lua
 _.split('q,w,e,r', ',')
@@ -96,7 +96,7 @@ _.split('qwer as', ''
 empty
 ---
 
-check if the value is empty, read the demo below before you use the api
+Check if the value is empty, read the demo below before you use the api
 
 _.empty(value)
 
@@ -150,15 +150,35 @@ assertEqual
 
 _.assertEqual(actual, expect, [level = 2])
 
-same like `_.isEqual`, but will throw an assertion error when `_.isEqual` return false
+Same like `_.isEqual`, but will throw an assertion error when `_.isEqual` return false
 
+```lua
+_.assertEqual({a = 1}, {a = 2})
+```
+
+program will exit and throw error with output with
+
+> file:line: AssertionError: actual == expect
+
+``` bash
+lua: test.lua:19: AssertionError: {
+    'a': 1
+} == {
+    'a': 2
+}
+stack traceback:
+        [C]: in function 'error'
+        ./shim.lua:312: in function 'assertEqual'
+        test.lua:19: in main chunk
+        [C]: in ?
+```
 
 ok
 ---
 
 _.ok(...)
 
-mostly used in multi test cases, also throw assertion error when fail to match
+Mostly used in multi test cases, also throw assertion error when fail to match
 
 ```lua
 _.ok(true)
@@ -181,7 +201,7 @@ dump
 
 _.dump(value)
 
-pretty print a table or other types
+Pretty print a table or other types
 
 ```lua
 print(_.dump({

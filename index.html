@@ -2,7 +2,7 @@
 ul
   each x in section
     li: a(href='#')= x
---></div><div id="heading"><div id="logo">shim</div><div id="tagline">A utility library for Lua</div></div></section><section><div class="content"><h1 id="introduction">introduction</h1><p><p><code>shim.lua</code> is a utility library for lua, which deeply inspired by <a href="https://github.com/jashkenas/underscore">Underscore.js</a>, <a href="https://github.com/lodash/lodash">Lodash.js</a>, <a href="https://github.com/Yonaba/Moses">Moses</a>, but more suitable for lua</p>
+--></div><div id="heading"><div id="logo">shim</div><div id="tagline">A utility library for Lua</div></div></section><section><div class="content"><h1 id="introduction">introduction</h1><p><p><code>shim.lua</code> is a utility library for lua, which deeply inspired by <a href="https://github.com/jashkenas/underscore">Underscore.js</a>, <a href="https://github.com/lodash/lodash">Lodash.js</a>, <a href="https://github.com/Yonaba/Moses">Moses</a>, but more suitable as a lua lib</p>
 <ul>
 <li><p>easy to handle arraylike table easily with <a href="/#array">array api</a></p>
 </li>
@@ -15,7 +15,7 @@ ul
 </ul>
 <p>see at <a href="https://github.com/chunpu/Shim">Github repository</a></p>
 <h2 id="install">Install</h2>
-<pre><code class="lang-bash">$ wget --no-check-certificate https://raw.githubusercontent.com/chunpu/Shim/master/shim.lua
+<pre><code class="lang-bash">wget --no-check-certificate https://raw.githubusercontent.com/chunpu/Shim/master/shim.lua
 </code></pre>
 <h2 id="usage">Usage</h2>
 <pre><code class="lang-lua">local _ = require &#39;shim&#39;
@@ -31,7 +31,7 @@ _.isArray({1, 2, 3, w = 4})
 </code></pre>
 <h2 id="isequal">isEqual</h2>
 <p>_.isEqual(a, b)</p>
-<p>compare a and b if they are</p>
+<p>Compare a and b if they are</p>
 <ul>
 <li>same table</li>
 <li>value equal</li>
@@ -49,7 +49,7 @@ _.isEqual({}, {})
 <p>it won&#39;t compare metatable</p>
 <h2 id="trim">trim</h2>
 <p>_.trim(string, [where])</p>
-<p>remove whitespace at ends of a string, default is both ends</p>
+<p>Remove whitespace at ends of a string, default is both ends</p>
 <pre><code class="lang-lua">_.trim(&#39;  abc   &#39;)
 -- → &#39;abc&#39;
 
@@ -64,7 +64,7 @@ _.trim(&#39;  abc  &#39;, &#39;left&#39;)
 </code></pre>
 <h2 id="extend">extend</h2>
 <p>_.extend(dst, ...)</p>
-<p>extend the properties of ... to the destination object, and return the destination object, ... object properties will overwrite dst object properties</p>
+<p>Extend the properties of ... to the destination object, and return the destination object, ... object properties will overwrite dst object properties</p>
 <pre><code class="lang-lua">_.extend({a = 1}, {b = 2})
 -- → {a = 1, b = 2}
 
@@ -76,7 +76,7 @@ _.extend({a = 1}, {b = 2}, {c = 3}
 </code></pre>
 <h2 id="split">split</h2>
 <p>_.split(str, sep)</p>
-<p>split a string into array by separating it with the separator</p>
+<p>Split a string into array by separating it with the separator</p>
 <pre><code class="lang-lua">_.split(&#39;q,w,e,r&#39;, &#39;,&#39;)
 -- → {&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;}
 
@@ -84,7 +84,7 @@ _.split(&#39;qwer as&#39;, &#39;&#39;
 -- → {&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;, &#39; &#39;, &#39;a&#39;, &#39;s&#39;}
 </code></pre>
 <h2 id="empty">empty</h2>
-<p>check if the value is empty, read the demo below before you use the api</p>
+<p>Check if the value is empty, read the demo below before you use the api</p>
 <p>_.empty(value)</p>
 <pre><code class="lang-lua">_.empty(false)
 _.empty({})
@@ -123,10 +123,27 @@ _.only({
 </code></pre>
 <h2 id="assertequal">assertEqual</h2>
 <p>_.assertEqual(actual, expect, [level = 2])</p>
-<p>same like <code>_.isEqual</code>, but will throw an assertion error when <code>_.isEqual</code> return false</p>
+<p>Same like <code>_.isEqual</code>, but will throw an assertion error when <code>_.isEqual</code> return false</p>
+<pre><code class="lang-lua">_.assertEqual({a = 1}, {a = 2})
+</code></pre>
+<p>program will exit and throw error with output with</p>
+<blockquote>
+<p>file:line: AssertionError: actual == expect</p>
+</blockquote>
+<pre><code class="lang-bash">lua: test.lua:19: AssertionError: {
+    &#39;a&#39;: 1
+} == {
+    &#39;a&#39;: 2
+}
+stack traceback:
+        [C]: in function &#39;error&#39;
+        ./shim.lua:312: in function &#39;assertEqual&#39;
+        test.lua:19: in main chunk
+        [C]: in ?
+</code></pre>
 <h2 id="ok">ok</h2>
 <p>_.ok(...)</p>
-<p>mostly used in multi test cases, also throw assertion error when fail to match</p>
+<p>Mostly used in multi test cases, also throw assertion error when fail to match</p>
 <pre><code class="lang-lua">_.ok(true)
 
 _.ok(false) -- → throw error
@@ -142,7 +159,7 @@ _.assertEqual(2, 2)
 </code></pre>
 <h2 id="dump">dump</h2>
 <p>_.dump(value)</p>
-<p>pretty print a table or other types</p>
+<p>Pretty print a table or other types</p>
 <pre><code class="lang-lua">print(_.dump({
     a = 1,
     b = {
@@ -178,7 +195,7 @@ _.assertEqual(2, 2)
     }
 }
 </code></pre>
-</p></div></section><section><div class="content"><h1 id="array">array</h1><p><p>most array functions can be used on string too</p>
+</p></div></section><section><div class="content"><h1 id="array">array</h1><p><p>Most array functions can be used on string too</p>
 <h2 id="each">each</h2>
 <p>_.each(array, func)</p>
 <p>Iterates the array table, executing the callback for each element</p>
@@ -199,7 +216,7 @@ end
 <p><code>_.each</code> is the base function for other api like <code>_.map</code>, <code>_.filter</code>, so you can also use them directly without type checking</p>
 <h2 id="_each">_each</h2>
 <p>_._each(array, func)</p>
-<p>like <code>_.each</code> above, but break loop when <code>func</code> return <code>false</code></p>
+<p>Like <code>_.each</code> above, but break loop when <code>func</code> return <code>false</code></p>
 <pre><code class="lang-lua">local arr = {}
 _._each({1, 2, 3, 4}, function(x)
     if x &gt; 2 then return false end -- break loop
@@ -209,7 +226,7 @@ arr -- → {1, 2}
 </code></pre>
 <h2 id="every">every</h2>
 <p>_.every(array, func)</p>
-<p>check if all the callback return values are truthy</p>
+<p>Check if all the callback return values are truthy</p>
 <pre><code class="lang-lua">_.every({1, 2, 3}, function(x)
     return x &gt; 0
 end)
@@ -222,6 +239,7 @@ end)
 </code></pre>
 <h2 id="some">some</h2>
 <p>_.some(array, func)</p>
+<p>Check if any callback return values are truthy</p>
 <pre><code class="lang-lua">_.some({1, 2, 3}, function(x)
     return x &gt; 2
 end)
@@ -234,7 +252,7 @@ end)
 </code></pre>
 <h2 id="map">map</h2>
 <p>_.map(array, func)</p>
-<p>returns a new array of the results of each callback execution</p>
+<p>Return a new array of the results of each callback execution</p>
 <pre><code class="lang-lua">_.map({1, 0, 2, 4}, function(x)
     return x + 1
 end)
@@ -242,7 +260,7 @@ end)
 </code></pre>
 <h2 id="has">has</h2>
 <p>_.has(array|string, item)</p>
-<p>return true if item is in the string|array</p>
+<p>Return true if item is in the string|array</p>
 <pre><code class="lang-lua">_.has(&#39;qwert&#39;, &#39;rt&#39;)
 -- → true
 
@@ -251,44 +269,44 @@ _.has({1, 2, 3, 4}, 3)
 </code></pre>
 <h2 id="sub">sub</h2>
 <p>_.sub(string, start, end)</p>
-<p>return substring of a string by start and end index</p>
+<p>Return substring of a string by start and end index</p>
 <pre><code class="lang-lua">_.sub(&#39;qwer&#39;, 2, 3)
 -- → &#39;we&#39;
 </code></pre>
 <h2 id="flatten">flatten</h2>
 <p>_.flatten(array)</p>
-<p>flattens a nested array</p>
+<p>Flatten a nested array</p>
 <pre><code class="lang-lua">_.flatten({1, {2, {3, {4}}}})
 -- → {1, 2, 3, 4}
 </code></pre>
 <h2 id="push">push</h2>
 <p>_.push(array, ...)</p>
-<p>push ... to the end of the array</p>
+<p>Push ... to the end of the array</p>
 <pre><code class="lang-lua">_.push({1, 2, 3}, 4, 5)
 -- → {1, 2, 3, 4, 5}
 </code></pre>
 <h2 id="uniq">uniq</h2>
 <p>_.uniq(array)</p>
-<p>remove duplicated value in the array</p>
+<p>Remove duplicated values in the array</p>
 <p>it use table k, v so it won&#39;t keep the order</p>
 <pre><code class="lang-lua">_.uniq({1, 2, 3, 2, 1})
 -- → {1, 2, 3}
 </code></pre>
 <h2 id="union">union</h2>
 <p>_.union(...)</p>
-<p>creates an array of unique values, if nested then flatten first</p>
+<p>Create an array of unique values, if nested then flatten first</p>
 <pre><code class="lang-lua">_.sort(_.union({1, 2, 3}, {5, 2, 1, 4}, {2, 1}))
 -- → {1, 2, 3, 4, 5}
 </code></pre>
 <h2 id="sort">sort</h2>
 <p>_.sort(array, [func])</p>
-<p>alias for table.sort(table, [func])</p>
+<p>Alias for table.sort(table, [func])</p>
 <pre><code class="lang-lua">_.sort({3, 2, 4, 1})
 -- → {1, 2, 3, 4}
 </code></pre>
 <h2 id="filter">filter</h2>
 <p>_.filter(array, func)</p>
-<p>returns a new array of elements that passed the callback check</p>
+<p>Return a new array of elements that passed the callback check</p>
 <pre><code class="lang-lua">_.filter({1, 2, 3, 4, 5}, function(x)
     return x &gt; 3
 end
@@ -296,7 +314,7 @@ end
 </code></pre>
 <h2 id="indexof">indexOf</h2>
 <p>_.indexOf(array|string, value, [from = 1], [isPlain = false])</p>
-<p>get the index of the matched value or nil</p>
+<p>Get the index of the matched value or nil</p>
 <p><code>isPlain = true</code> turns off the pattern matching facilities</p>
 <pre><code class="lang-lua">_.indexOf({11, 22, 33}, 22)
 -- → 2
@@ -309,7 +327,7 @@ _.indexOf({11, 22, 33, 33, 22, 11}, 22, 3)
 </code></pre>
 <h2 id="lastindexof">lastIndexOf</h2>
 <p>_.lastIndexOf(array|string, value, [from = #array], [isPlain = false])</p>
-<p>match from end of the array, get the index of the matched value or nil</p>
+<p>Match from end of the array, get the index of the matched value or nil</p>
 <pre><code class="lang-lua">_.lastIndexOf({11, 22, 33, 11}, 11)
 -- → 4
 _.lastIndexOf({11, 22, 33, 11}, 0)
@@ -319,20 +337,19 @@ _.lastIndexOf({11, 22, 33}, 11)
 </code></pre>
 <h2 id="difference">difference</h2>
 <p>_.difference(array, other)</p>
-<p>creates an array excluding all values of the second array</p>
+<p>Create an array excluding all values of the second array</p>
 <pre><code class="lang-lua">_.difference({1, 2, 3, 4, 5}, {5, 2, 10})
 -- → {1, 3, 4}
 </code></pre>
 <h2 id="without">without</h2>
-<p>without</p>
 <p>_.without(array, ...)</p>
-<p>creates an array excluding all provided arguments</p>
+<p>Create an array excluding all provided arguments</p>
 <pre><code class="lang-lua">_.without({1, 4, 3, nil, 0, &#39;&#39;}, nil, 0, &#39;&#39;)
 -- → {1, 4, 3}
 </code></pre>
 <h2 id="reduce">reduce</h2>
 <p>_.reduce(array, fn, [prev])</p>
-<p>reduces a collection to a value which is the accumulated result of running each element in the collection through the callback</p>
+<p>Reduce a collection to a value which is the accumulated result of running each element in the collection through the callback</p>
 <pre><code class="lang-lua">_.reduce({1, 2, 3, 4}, function(ret, k)
     return ret + k
 end, 0)
@@ -340,7 +357,7 @@ end, 0)
 </code></pre>
 <h2 id="invoke">invoke</h2>
 <p>_.invoke(arr, fn)</p>
-<p>just like map now</p>
+<p>Just like map now</p>
 <pre><code class="lang-lua">_.invoke({&#39;1&#39;, &#39;2&#39;, &#39;3&#39;}, tonumber)
 -- → {1, 2, 3}
 </code></pre>
@@ -350,10 +367,10 @@ end, 0)
 <pre><code class="lang-lua">_({1, 0, 2, 4}):sort()
 -- → {0, 1, 2, 4}
 </code></pre>
-<p>tips:  <code>a:b(args)</code> is sugar for <code>a.b(self, args)</code>, <code>self</code> is a</p>
+<p>Tips:  <code>a:b(args)</code> is sugar for <code>a.b(self, args)</code>, <code>self</code> is a</p>
 <h2 id="chain">chain</h2>
 <p>_(value):chain()</p>
-<p>make the wrapped table chainable, remember to use <code>:value()</code> to get the value you need</p>
+<p>Make the wrapped table chainable, remember to use <code>:value()</code> to get the value you need</p>
 <pre><code class="lang-lua">_({1, 0, 2, 4})
     :chain()
     :sort()
