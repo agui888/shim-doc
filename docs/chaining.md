@@ -3,7 +3,7 @@ _
 
 _(value)
 
-`_` is callable, `_(value)` will create a table wraps the given value
+`_` is callable, `_(value)` creates a table wraps the given value
 
 ```lua
 _({1, 0, 2, 4}):sort()

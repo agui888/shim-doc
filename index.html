@@ -239,7 +239,7 @@ end)
 </code></pre>
 <h2 id="some">some</h2>
 <p>_.some(array, func)</p>
-<p>Check if any callback return values are truthy</p>
+<p>Check if any callback return value is truthy</p>
 <pre><code class="lang-lua">_.some({1, 2, 3}, function(x)
     return x &gt; 2
 end)
@@ -260,7 +260,7 @@ end)
 </code></pre>
 <h2 id="has">has</h2>
 <p>_.has(array|string, item)</p>
-<p>Return true if item is in the string|array</p>
+<p>Return true if item in the array|string</p>
 <pre><code class="lang-lua">_.has(&#39;qwert&#39;, &#39;rt&#39;)
 -- → true
 
@@ -363,7 +363,7 @@ end, 0)
 </code></pre>
 </p></div></section><section><div class="content"><h1 id="chaining">chaining</h1><p><h2 id="_">_</h2>
 <p>_(value)</p>
-<p><code>_</code> is callable, <code>_(value)</code> will create a table wraps the given value</p>
+<p><code>_</code> is callable, <code>_(value)</code> creates a table wraps the given value</p>
 <pre><code class="lang-lua">_({1, 0, 2, 4}):sort()
 -- → {0, 1, 2, 4}
 </code></pre>

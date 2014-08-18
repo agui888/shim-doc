@@ -71,7 +71,7 @@ some
 
 _.some(array, func)
 
-Check if any callback return values are truthy
+Check if any callback return value is truthy
 
 ```lua
 _.some({1, 2, 3}, function(x)
@@ -104,7 +104,7 @@ has
 
 _.has(array|string, item)
 
-Return true if item is in the string|array
+Return true if item in the array|string
 
 ```lua
 _.has('qwert', 'rt')
