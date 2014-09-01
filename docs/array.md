@@ -1,5 +1,3 @@
-Most array functions can be used on string too
-
 each
 ---
 

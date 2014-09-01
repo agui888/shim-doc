@@ -96,20 +96,25 @@ _.split('qwer as', ''
 empty
 ---
 
-Check if the value is empty, read the demo below before you use the api
+Check if the value is empty, only when `string ~= ''` or not empty table will return true. read the demo below before you use the api
 
 _.empty(value)
 
 ```lua
 _.empty(false)
+_.empty(true)
 _.empty({})
 _.empty(0)
+_.empty(1)
 _.empty('')
+_.empty(print)
 -- → true
 
-_.empty(1)
 _.empty('0')
-_.empty(true)
+_.empty('11111')
+_.empty({0})
+_.empty({1, 2})
+_.empty({a = 1})
 -- → false
 ```
 

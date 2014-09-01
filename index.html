@@ -84,17 +84,22 @@ _.split(&#39;qwer as&#39;, &#39;&#39;
 -- → {&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;, &#39; &#39;, &#39;a&#39;, &#39;s&#39;}
 </code></pre>
 <h2 id="empty">empty</h2>
-<p>Check if the value is empty, read the demo below before you use the api</p>
+<p>Check if the value is empty, only when <code>string ~= &#39;&#39;</code> or not empty table will return true. read the demo below before you use the api</p>
 <p>_.empty(value)</p>
 <pre><code class="lang-lua">_.empty(false)
+_.empty(true)
 _.empty({})
 _.empty(0)
+_.empty(1)
 _.empty(&#39;&#39;)
+_.empty(print)
 -- → true
 
-_.empty(1)
 _.empty(&#39;0&#39;)
-_.empty(true)
+_.empty(&#39;11111&#39;)
+_.empty({0})
+_.empty({1, 2})
+_.empty({a = 1})
 -- → false
 </code></pre>
 <h2 id="only">only</h2>
